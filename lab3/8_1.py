@@ -9,75 +9,75 @@ def cat(x1, y1, x2, y2, colorc, colory):
     b = x2 - x1
     if b >= 0:
         ellipse(sc, colorc,
-            (x1 + b / 20, y1 + a / 2, b / 8, a / 2))  # 1 нога
+                (x1 + b / 20, y1 + a / 2, b / 8, a / 2))  # 1 нога
         ellipse(sc, WHITE,
-            (x1 + b / 20, y1 + a / 2, b / 8, a / 2), 2)
+                (x1 + b / 20, y1 + a / 2, b / 8, a / 2), 2)
         ellipse(sc, colorc,
-            (x1 + b * 7 / 8, y1 + a / 2, b / 3, a / 3))  # хвост
+                (x1 + b * 7 / 8, y1 + a / 2, b / 3, a / 3))  # хвост
         ellipse(sc, WHITE,
-            (x1 + b * 7 / 8, y1 + a / 2, b / 3, a / 3), 2)
+                (x1 + b * 7 / 8, y1 + a / 2, b / 3, a / 3), 2)
         ellipse(sc, colorc,
-            (x1 + b / 8, y1 + 1 / 5 * a, 5 * b / 6, a * 4 / 5))  # тело
+                (x1 + b / 8, y1 + 1 / 5 * a, 5 * b / 6, a * 4 / 5))  # тело
         ellipse(sc, WHITE,
-            (x1 + b / 8, y1 + 1 / 5 * a, 5 * b / 6, a * 4 / 5), 2)
+                (x1 + b / 8, y1 + 1 / 5 * a, 5 * b / 6, a * 4 / 5), 2)
         circle(sc, colorc,
-           (x1 + b / 6, y1 + a / 2), a / 3)  # голова
+               (x1 + b / 6, y1 + a / 2), a / 3)  # голова
         circle(sc, WHITE,
-           (x1 + b / 6, y1 + a / 2), a / 3, 2)
+               (x1 + b / 6, y1 + a / 2), a / 3, 2)
         ellipse(sc, colorc,
-            (x1 + b / 6, y1 + a * 6 / 7, b / 5, a / 5))  # 2 ног
+                (x1 + b / 6, y1 + a * 6 / 7, b / 5, a / 5))  # 2 ног
         ellipse(sc, WHITE,
-            (x1 + b / 6, y1 + a * 6 / 7, b / 5, a / 5), 2)
+                (x1 + b / 6, y1 + a * 6 / 7, b / 5, a / 5), 2)
         circle(sc, colorc,
-           (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4)  # круг ноги 3
+               (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4)  # круг ноги 3
         circle(sc, WHITE,
-           (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4, 2)
+               (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4, 2)
         ellipse(sc, colorc,
-            (x1 + b * 7 / 8, y1 + a * 7 / 8, b / 8, a / 3))
+                (x1 + b * 7 / 8, y1 + a * 7 / 8, b / 8, a / 3))
         ellipse(sc, WHITE,
-            (x1 + b * 7 / 8, y1 + a * 7 / 8, b / 8, a / 3), 2)  # нога 3
+                (x1 + b * 7 / 8, y1 + a * 7 / 8, b / 8, a / 3), 2)  # нога 3
 
         circle(sc, colory,
-           (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14)  # глаза
+               (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14)  # глаза
         circle(sc, colory,
-           (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14)
+               (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14)
         circle(sc, BLACK,
-           (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14, 1)
+               (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14, 1)
         circle(sc, BLACK,
-           (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14, 1)
+               (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14, 1)
         ellipse(sc, BLACK,
-            (x1 + b / 6 + b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
+                (x1 + b / 6 + b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
         ellipse(sc, BLACK,
-            (x1 + b / 6 - b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
+                (x1 + b / 6 - b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
     else:
         ellipse(sc, colorc,
-            (x1 + b / 20, y1 + a / 2, b / 8, a / 2))  # 1 нога
+                (x1 + b / 20, y1 + a / 2, b / 8, a / 2))  # 1 нога
         ellipse(sc, colorc,
-            (x1 + b * 7 / 8, y1 + a / 2, b / 3, a / 3))  # хвост
+                (x1 + b * 7 / 8, y1 + a / 2, b / 3, a / 3))  # хвост
         ellipse(sc, colorc,
-            (x1 + b / 8, y1 + 1 / 5 * a, 5 * b / 6, a * 4 / 5))  # тело
+                (x1 + b / 8, y1 + 1 / 5 * a, 5 * b / 6, a * 4 / 5))  # тело
         circle(sc, colorc,
-           (x1 + b / 6, y1 + a / 2), a / 3)  # голова
+               (x1 + b / 6, y1 + a / 2), a / 3)  # голова
         ellipse(sc, colorc,
-            (x1 + b / 6, y1 + a * 6 / 7, b / 5, a / 5))  # 2 ног
+                (x1 + b / 6, y1 + a * 6 / 7, b / 5, a / 5))  # 2 ног
         circle(sc, colorc,
-           (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4)  # круг ноги 3
+               (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4)  # круг ноги 3
         circle(sc, WHITE,
-           (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4, 2)
+               (x1 + 5 * b / 6, y1 + 4 / 5 * a), a / 4, 2)
         ellipse(sc, colorc,
-            (x1 + b * 7 / 8, y1 + a * 7 / 8, b / 8, a / 3))
+                (x1 + b * 7 / 8, y1 + a * 7 / 8, b / 8, a / 3))
         circle(sc, colory,
-           (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14)  # глаза
+               (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14)  # глаза
         circle(sc, colory,
-           (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14)
+               (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14)
         circle(sc, BLACK,
-           (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14, 1)
+               (x1 + b / 6 + b / 15, y1 + a / 2 - a / 10), a / 14, 1)
         circle(sc, BLACK,
-           (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14, 1)
+               (x1 + b / 6 - b / 15, y1 + a / 2 - a / 10), a / 14, 1)
         ellipse(sc, BLACK,
-            (x1 + b / 6 + b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
+                (x1 + b / 6 + b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
         ellipse(sc, BLACK,
-            (x1 + b / 6 - b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
+                (x1 + b / 6 - b / 15 + b / 100, y1 + a / 2 - a / 10 - a / 20, b / 100, a / 10))
     pygame.draw.polygon(sc, WHITE,
                         [(x1 + (0.316 * b) * 2 / 3, y1 + 0.19 * a), (x1 + (0.44 * b) * 2 / 3, y1 + 0.314 * a),
                          (x1 + (0.45 * b) * 2 / 3, y1 + 0.1 * a)], 4)  # уши
@@ -153,12 +153,12 @@ cat(100, 600, 300, 700, GRAY, GREEN)
 cat(300, 300, 100, 400, RED, PINK)
 cat(500, 500, 400, 550, RED, PINK)
 
-
 klu(400, 400, GREEN, 30, -1)
 klu(650, 400, GREEN, 20, 1)
 klu(200, 450, GREEN, 30, -1)
 klu(100, 550, GREEN, 30, 1)
 klu(600, 600, GREEN, 60, -1)
+
 wn(100, 50, -200, 200)
 wn(400, 50, -200, 200)
 wn(650, 50, -200, 200)
