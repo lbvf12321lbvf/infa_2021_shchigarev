@@ -87,7 +87,7 @@ BLACK = (0, 0, 0)
 N = 7
 n = 0
 score = 0
-time = 2
+time = 20
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 vx = defaultdict(lambda: randint(-10, 10))
