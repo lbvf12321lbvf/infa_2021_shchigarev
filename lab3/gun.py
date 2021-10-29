@@ -14,13 +14,13 @@ canv.pack(fill=tk.BOTH, expand=1)
 
 def on_key_press(event):
     global vx, vy
-    if event.keysym == 'a':
+    if event.keysym in ('a', 'ф', 'A', 'Ф'):
         vx = -5
-    elif event.keysym == 'd':
+    elif event.keysym in ('d', 'в', 'D', 'В'):
         vx = 5
-    elif event.keysym == 'w':
+    elif event.keysym in ('w', 'ц', 'W', 'Ц',):
         vy = -5
-    elif event.keysym == 's':
+    elif event.keysym in ('s', 'ы', 'S', 'Ы'):
         vy = 5
     if event.keysym == '1' or '2':
         g1.shot_type(event.keysym)
@@ -28,9 +28,9 @@ def on_key_press(event):
 
 def on_key_release(event):
     global vx, vy
-    if event.keysym in ('a', 'd'):
+    if event.keysym in ('a', 'd', 'ф', 'A', 'Ф', 'в', 'D', 'В'):
         vx = 0
-    elif event.keysym in ('w', 's'):
+    elif event.keysym in ('w', 's', 'ц', 'W', 'Ц', 'ы', 'S', 'Ы'):
         vy = 0
 
 
@@ -45,6 +45,9 @@ class Board:
         self.kx = 1
 
     def check(self, obj, typ=''):
+        """
+        Проверка на столкновение между объектом и стеной и смена направления движения шарика при оном
+        """
         global successful_targets
         y = obj.y
         x = obj.x
@@ -98,10 +101,14 @@ class Balls:
         self.live = 30
 
     def rot(self, fi):
+        """поворот вектора скорости шарика на угол фи"""
         self.vx = self.vx * math.cos(fi) + self.vy * math.sin(fi)
         self.vy = - self.vx * math.sin(fi) + self.vy * math.cos(fi)
 
     def set_coords(self):
+        """
+        установка координат
+        """
         canv.coords(
             self.id,
             self.x - self.r,
@@ -177,12 +184,18 @@ class Gun:
         )
 
     def minus_live(self):
+        """
+        уменьшение жизни при попадании
+        """
         if self.inviz_time <= 0:
             self.live -= 1
             self.color = 'white'
             self.inviz_time = 100
 
     def shot_type(self, x):
+        """
+        смена типа снаряда
+        """
         if x == '1':
             self.type = 'ball'
             print(1)
@@ -288,6 +301,9 @@ class Gun:
             canv.itemconfig(self.id, fill='black')
 
     def move(self, v_x, v_y):
+        """
+        происходит перемещение ракеты
+        """
         self.vx = v_x
         self.vy = -v_y
         self.x += v_x
@@ -303,12 +319,18 @@ class Gun:
             bord.check(self)
 
     def chek_color(self):
+        """
+        проверка, нужно ли менять цвет и смена цвета
+        """
         self.inviz_time -= 1
         if self.inviz_time <= 0:
             self.color = self.color2
         canv.itemconfig(self.id2, fill=self.color)
 
     def power_up(self):
+        """
+        Увеличение мощности при зажатии клавиши
+        """
         if self.on:
             if self.power < 50:
                 self.power += 0.5
@@ -360,6 +382,9 @@ class Target:
             self.vx = rnd(-5, 5)
 
     def move(self, boards):
+        """
+        перемещение цели
+        """
         for bord in boards:
             bord.check(self)
         self.x += self.vx
@@ -371,6 +396,9 @@ class Target:
             self.set_coords()
 
     def set_coords(self):
+        """
+        установка координат
+        """
         if self.type != 'carrier':
             canv.coords(
                 self.id,
@@ -396,6 +424,9 @@ class Target:
         canv.delete(self.id)
 
     def spawn(self, n):
+        """
+        спавн синего квадрата
+        """
         global t_rare, num
 
         if self.live > 0 and self.tik <= 0:
@@ -406,6 +437,9 @@ class Target:
         self.tik -= 1
 
     def delete_new(self):
+        """
+        новая функция удаления
+        """
         canv.delete(self.id)
 
 
@@ -414,6 +448,9 @@ class Texts:
         self.id = canv.create_text(x, y, text=tex, font='28')
 
     def peretext(self, sc, x=30, y=30, tex=''):
+        """
+        создаёт текст в нужной точке
+        """
         canv.delete(self.id)
         self.id = canv.create_text(x, y, text=(tex + str(sc)), font='28')
 
@@ -523,6 +560,8 @@ def new_game(n):
                 t_carrier[i].hit()
             t_standard[0].live = 0
             n = 0
+            canv.update()
+            time.sleep(2)
         tx.peretext(score)
         canv.update()
         time.sleep(tick)
