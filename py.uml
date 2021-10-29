@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#C:/Users/dimas/infa_2021_shchigarev/lab3/gun.py</OriginalElement>
+  <nodes>
+    <node x="202.0" y="697.0">lab3.gun.Gun</node>
+    <node x="0.0" y="873.0">lab3.gun.Target</node>
+    <node x="381.0" y="840.0">lab3.gun.Balls</node>
+    <node x="278.6666666666667" y="1356.0">lab3.gun.Target_s</node>
+    <node x="394.0" y="0.0">typing.Hashable</node>
+    <node x="570.0" y="884.0">lab3.gun.Board</node>
+    <node x="350.0" y="106.0">object</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="lab3.gun.Target_s" target="object" relationship="REALIZATION">
+      <point x="77.0" y="-160.5" />
+      <point x="509.6666666666667" y="1330.0" />
+      <point x="741.5" y="1330.0" />
+      <point x="741.5" y="672.0" />
+      <point x="465.5" y="672.0" />
+      <point x="0.0" y="270.5" />
+    </edge>
+    <edge source="object" target="typing.Hashable" relationship="INTERFACE">
+      <point x="0.0" y="-270.5" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="lab3.gun.Balls" target="object" relationship="REALIZATION">
+      <point x="0.0" y="-160.5" />
+      <point x="0.0" y="270.5" />
+    </edge>
+    <edge source="lab3.gun.Gun" target="object" relationship="REALIZATION">
+      <point x="0.0" y="-303.5" />
+      <point x="281.5" y="672.0" />
+      <point x="465.5" y="672.0" />
+      <point x="0.0" y="270.5" />
+    </edge>
+    <edge source="lab3.gun.Target" target="object" relationship="REALIZATION">
+      <point x="0.0" y="-127.5" />
+      <point x="91.0" y="672.0" />
+      <point x="465.5" y="672.0" />
+      <point x="0.0" y="270.5" />
+    </edge>
+    <edge source="lab3.gun.Board" target="object" relationship="REALIZATION">
+      <point x="0.0" y="-116.5" />
+      <point x="650.5" y="672.0" />
+      <point x="465.5" y="672.0" />
+      <point x="0.0" y="270.5" />
+    </edge>
+    <edge source="lab3.gun.Target_s" target="lab3.gun.Target" relationship="REALIZATION">
+      <point x="-77.0" y="-160.5" />
+      <point x="355.6666666666667" y="1330.0" />
+      <point x="91.0" y="1330.0" />
+      <point x="0.0" y="127.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.3070123747790218" showDependencies="false" x="371.0" y="838.4999999999999" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+</Diagram>
+
