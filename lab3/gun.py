@@ -351,36 +351,6 @@ class Target:
             self.id = canv.create_rectangle(0, 0, 0, 0)
         self.new_target()
 
-    def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
-        """ Инициализация новой цели. """
-        if self.type == 'standard':
-            x = self.x = rnd(600, 750)
-            y = self.y = rnd(300, 550)
-            r = self.r = rnd(7, 50)
-            color = self.color = 'red'
-            canv.coords(self.id, x - r, y - r, x + r, y + r)
-            canv.itemconfig(self.id, fill=color)
-            self.vy = rnd(-10, 10)
-            self.vx = rnd(-10, 10)
-        elif self.type == 'rare':
-            x = self.x = x1
-            y = self.y = y1
-            r = self.r = rnd(7, 15)
-            color = self.color = 'blue'
-            canv.coords(self.id, x - r, y - r, x + r, y + r)
-            canv.itemconfig(self.id, fill=color)
-            self.vy = rnd(-15, 15)
-            self.vx = rnd(-15, 15)
-        elif self.type == 'carrier':
-            x = self.x = rnd(600, 750)
-            y = self.y = rnd(300, 550)
-            r = self.r = rnd(20, 30)
-            color = self.color = 'green'
-            canv.coords(self.id, x - 2 * r, y - r, x + 2 * r, y + r)
-            canv.itemconfig(self.id, fill=color)
-            self.vy = rnd(-5, 5)
-            self.vx = rnd(-5, 5)
-
     def move(self, boards):
         """
         перемещение цели
@@ -423,6 +393,76 @@ class Target:
             self.points = 3 * points
         canv.delete(self.id)
 
+    def delete_new(self):
+        """
+        новая функция удаления
+        """
+        canv.delete(self.id)
+
+
+class Target_s(Target):
+    def __init__(self, typ='standard'):
+        self.points = 0
+        self.live = 1
+        self.type = typ
+        self.tik = 100
+        self.id = canv.create_oval(0, 0, 0, 0)
+
+        self.new_target()
+
+    def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
+        """ Инициализация новой цели. """
+        x = self.x = rnd(600, 750)
+        y = self.y = rnd(300, 550)
+        r = self.r = rnd(7, 50)
+        color = self.color = 'red'
+        canv.coords(self.id, x - r, y - r, x + r, y + r)
+        canv.itemconfig(self.id, fill=color)
+        self.vy = rnd(-10, 10)
+        self.vx = rnd(-10, 10)
+
+
+class Target_r(Target):
+    def __init__(self, typ='rare'):
+        self.points = 0
+        self.live = 1
+        self.type = typ
+        self.tik = 100
+        self.id = canv.create_rectangle(0, 0, 0, 0)
+        self.new_target()
+
+    def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
+        """ Инициализация новой цели. """
+        x = self.x = x1
+        y = self.y = y1
+        r = self.r = rnd(7, 15)
+        color = self.color = 'blue'
+        canv.coords(self.id, x - r, y - r, x + r, y + r)
+        canv.itemconfig(self.id, fill=color)
+        self.vy = rnd(-15, 15)
+        self.vx = rnd(-15, 15)
+
+
+class Target_c(Target):
+    def __init__(self, typ='carrier'):
+        self.points = 0
+        self.live = 1
+        self.type = typ
+        self.tik = 100
+        self.id = canv.create_oval(0, 0, 0, 0)
+        self.new_target()
+
+    def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
+        """ Инициализация новой цели. """
+        x = self.x = rnd(600, 750)
+        y = self.y = rnd(300, 550)
+        r = self.r = rnd(20, 30)
+        color = self.color = 'green'
+        canv.coords(self.id, x - 2 * r, y - r, x + 2 * r, y + r)
+        canv.itemconfig(self.id, fill=color)
+        self.vy = rnd(-5, 5)
+        self.vx = rnd(-5, 5)
+
     def spawn(self, n):
         """
         спавн синего квадрата
@@ -431,16 +471,10 @@ class Target:
 
         if self.live > 0 and self.tik <= 0:
             num += 1
-            t_rare[n - 2 + num] = Target(typ='rare')
-            t_rare[n - 2 + num].new_target(self.x, self.y)
+            t_rare[n - 2 + num] = Target_r()
+            t_rare[n - 2 + num].new_target(x1=self.x, y1=self.y)
             self.tik = 50
         self.tik -= 1
-
-    def delete_new(self):
-        """
-        новая функция удаления
-        """
-        canv.delete(self.id)
 
 
 class Texts:
@@ -455,9 +489,9 @@ class Texts:
         self.id = canv.create_text(x, y, text=(tex + str(sc)), font='28')
 
 
-t_standard = defaultdict(lambda: Target())
-t_rare = defaultdict(lambda: Target(typ='rare'))
-t_carrier = defaultdict(lambda: Target())
+t_standard = defaultdict(lambda: Target_s())
+t_rare = defaultdict(lambda: Target_r())
+t_carrier = defaultdict(lambda: Target_c())
 screen1 = canv.create_text(400, 300, text='', font='28')
 g1 = Gun()
 bullet = 0
@@ -467,7 +501,7 @@ vy = 0
 k = 2
 tik = 100
 balls = []
-t_standard[0] = Target()
+t_standard[0] = Target_s()
 t_standard[0].delete_new()
 successful_targets = 0
 num = 0
@@ -480,13 +514,13 @@ boards = [Board(4, 4, 800, 0), Board(4, 596, 800, 0), Board(4, 4, 0, 600), Board
 def new_game(n):
     global t_standard, screen1, balls, bullet, score, successful_targets, num, tik, k
     for i in range(n):
-        t_standard[i + 1] = Target()
+        t_standard[i + 1] = Target_s()
         t_standard[i + 1].new_target()
     for i in range(n - 1):
-        t_rare[i] = Target(typ='rare')
+        t_rare[i] = Target_r()
         t_rare[i].new_target()
     for i in range(n - 1):
-        t_carrier[i] = Target(typ='carrier')
+        t_carrier[i] = Target_c()
         t_carrier[i].new_target()
     bullet = 0
     balls = []
