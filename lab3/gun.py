@@ -340,16 +340,10 @@ class Gun:
 
 
 class Target:
-    def __init__(self, typ='standard'):
+    def __init__(self):
         self.points = 0
         self.live = 1
-        self.type = typ
         self.tik = 100
-        if self.type == 'standard' or self.type == 'carrier':
-            self.id = canv.create_oval(0, 0, 0, 0)
-        elif self.type == 'rare':
-            self.id = canv.create_rectangle(0, 0, 0, 0)
-        self.new_target()
 
     def move(self, boards):
         """
@@ -369,29 +363,10 @@ class Target:
         """
         установка координат
         """
-        if self.type != 'carrier':
-            canv.coords(
-                self.id,
-                self.x - self.r,
-                self.y - self.r,
-                self.x + self.r,
-                self.y + self.r
-            )
-        else:
-            canv.coords(
-                self.id,
-                self.x - 2 * self.r,
-                self.y - self.r,
-                self.x + 2 * self.r,
-                self.y + self.r)
+        pass
 
-    def hit(self, points=1):
-        """Попадание шарика в цель."""
-        canv.coords(self.id, -10, -10, -10, -10)
-        self.points = points
-        if self.type == 'rare':
-            self.points = 3 * points
-        canv.delete(self.id)
+    def hit(self):
+        pass
 
     def delete_new(self):
         """
@@ -401,14 +376,26 @@ class Target:
 
 
 class Target_s(Target):
-    def __init__(self, typ='standard'):
-        self.points = 0
-        self.live = 1
-        self.type = typ
-        self.tik = 100
+    def __init__(self):
+        super().__init__()
+        self.type = 'standard'
         self.id = canv.create_oval(0, 0, 0, 0)
-
         self.new_target()
+
+    def hit(self):
+        """Попадание шарика в цель."""
+        canv.coords(self.id, -10, -10, -10, -10)
+        self.points = 1
+        canv.delete(self.id)
+
+    def set_coords(self):
+        canv.coords(
+            self.id,
+            self.x - self.r,
+            self.y - self.r,
+            self.x + self.r,
+            self.y + self.r
+        )
 
     def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
         """ Инициализация новой цели. """
@@ -423,13 +410,27 @@ class Target_s(Target):
 
 
 class Target_r(Target):
-    def __init__(self, typ='rare'):
-        self.points = 0
-        self.live = 1
-        self.type = typ
-        self.tik = 100
+
+    def __init__(self):
+        super().__init__()
+        self.type = 'rare'
         self.id = canv.create_rectangle(0, 0, 0, 0)
         self.new_target()
+
+    def set_coords(self):
+        canv.coords(
+            self.id,
+            self.x - self.r,
+            self.y - self.r,
+            self.x + self.r,
+            self.y + self.r
+        )
+
+    def hit(self):
+        """Попадание шарика в цель."""
+        canv.coords(self.id, -10, -10, -10, -10)
+        self.points = 3
+        canv.delete(self.id)
 
     def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
         """ Инициализация новой цели. """
@@ -444,13 +445,17 @@ class Target_r(Target):
 
 
 class Target_c(Target):
-    def __init__(self, typ='carrier'):
-        self.points = 0
-        self.live = 1
-        self.type = typ
-        self.tik = 100
+    def __init__(self):
+        super().__init__()
+        self.type = 'carrier'
         self.id = canv.create_oval(0, 0, 0, 0)
         self.new_target()
+
+    def hit(self):
+        """Попадание шарика в цель."""
+        canv.coords(self.id, -10, -10, -10, -10)
+        self.points = 5
+        canv.delete(self.id)
 
     def new_target(self, x1=rnd(600, 759), y1=rnd(300, 550)):
         """ Инициализация новой цели. """
@@ -463,9 +468,20 @@ class Target_c(Target):
         self.vy = rnd(-5, 5)
         self.vx = rnd(-5, 5)
 
+    def set_coords(self):
+        """
+        установка координат
+        """
+        canv.coords(
+            self.id,
+            self.x - 2 * self.r,
+            self.y - self.r,
+            self.x + 2 * self.r,
+            self.y + self.r)
+
     def spawn(self, n):
         """
-        спавн синего квадрата
+        создание снаряда, для отстрела от игрока
         """
         global t_rare, num
 
